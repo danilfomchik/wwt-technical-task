@@ -1,1 +1,6 @@
-{}
+{
+	"open filters": "Open Filters",
+	"reject filters": "Use old filter",
+	"apply": "Apply",
+	"apply filters": "Apply new filter"
+}
