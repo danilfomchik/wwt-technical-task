@@ -2,5 +2,6 @@
 	"open filters": "Open Filters",
 	"reject filters": "Use old filter",
 	"apply": "Apply",
-	"apply filters": "Apply new filter"
+	"apply filters": "Apply new filter",
+	"error message": "There was an error loading filters"
 }

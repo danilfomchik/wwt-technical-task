@@ -18,7 +18,11 @@ export const Filters = () => {
 	)
 
 	const { t } = useTranslation('filter')
-	const { data: filterItems } = useQuery({
+	const {
+		data: filterItems,
+		isError,
+		isLoading
+	} = useQuery({
 		queryKey: ['filtersData'],
 		queryFn: (): Promise<FilterChoose[]> =>
 			fetch('/src/temp/filterData.json')
@@ -63,6 +67,8 @@ export const Filters = () => {
 						onClose={onFiltersClose}
 					>
 						<FiltersForm
+							isError={isError}
+							isLoading={isLoading}
 							filterItems={filterItems || []}
 							setPendingData={setPendingData}
 							isOpen={isFiltersOpen}

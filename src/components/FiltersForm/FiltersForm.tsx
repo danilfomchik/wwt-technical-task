@@ -3,7 +3,14 @@ import { Controller, useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
-import { Box, Button, Heading } from '@chakra-ui/react'
+import {
+	Alert,
+	AlertIcon,
+	Box,
+	Button,
+	Heading,
+	Spinner
+} from '@chakra-ui/react'
 
 import { FilterType } from '@api/types/Filter'
 import { SearchRequestFilter } from '@api/types/SearchRequest/SearchRequestFilter'
@@ -15,6 +22,8 @@ import CheckboxGroup from '@components/CheckboxGroup/CheckboxGroup'
 import { IFiltersFormProps } from './types'
 
 export const FiltersForm = ({
+	isError,
+	isLoading,
 	filterItems,
 	setPendingData,
 	isOpen,
@@ -71,6 +80,27 @@ export const FiltersForm = ({
 		// update form
 		reset(defaultValues)
 	}, [isOpen, filterItems, reset])
+
+	if (isLoading) {
+		return (
+			<Box
+				display="flex"
+				justifyContent="center"
+				flex={1}
+			>
+				<Spinner size="lg" />
+			</Box>
+		)
+	}
+
+	if (isError && !isLoading) {
+		return (
+			<Alert status="error">
+				<AlertIcon />
+				{t('error message')}
+			</Alert>
+		)
+	}
 
 	return (
 		<Box
